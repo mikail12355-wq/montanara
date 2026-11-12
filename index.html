@@ -169,11 +169,11 @@ footer{border-top:1px solid var(--line);padding:30px 24px;display:flex;flex-wrap
 /* ===== Küche / Hero ===== */
 .k-stage{background:#EFE2CF}
 .k-layer{position:absolute;inset:0;width:100%;height:100%}
-.k-headline{position:absolute;left:0;right:0;top:11vh;text-align:center;font-family:"Anton","Oswald",Impact,"Arial Narrow",sans-serif;text-transform:uppercase;line-height:.86;color:#1E1A16;pointer-events:none;will-change:transform,opacity}
-.k-headline .la{font-size:clamp(40px,8vw,120px);color:var(--accent);letter-spacing:.04em}
-.k-headline .mo{font-size:clamp(76px,21.5vw,330px);letter-spacing:-.01em;white-space:nowrap}
+.k-headline{position:absolute;left:0;right:0;bottom:3vh;z-index:3;text-align:center;font-family:"Anton","Oswald",Impact,"Arial Narrow",sans-serif;text-transform:uppercase;line-height:.88;color:#F6F1E9;text-shadow:0 4px 18px rgba(0,0,0,.35);pointer-events:none;will-change:transform,opacity}
+.k-headline .la{font-size:clamp(22px,min(6vw,3.6vh),48px);color:#E8B04B;letter-spacing:.12em}
+.k-headline .mo{font-size:clamp(60px,min(21.5vw,12vh),170px);letter-spacing:-.01em;white-space:nowrap}
 .k-headline .la{white-space:nowrap}
-.k-headline span{display:inline-block;opacity:0;transform:scale(2.6);filter:blur(10px);animation:slam .7s cubic-bezier(.2,.9,.25,1.15) forwards}
+.k-headline .la span,.k-headline .mo span{display:inline-block;opacity:0;transform:scale(2.6);filter:blur(10px);animation:slam .7s cubic-bezier(.2,.9,.25,1.15) forwards}
 @keyframes slam{to{opacity:1;transform:none;filter:none}}
 .k-dim{position:absolute;inset:0;background:#120E0B;opacity:.9;pointer-events:none;animation:lightsOn 1.6s .35s cubic-bezier(.4,0,.2,1) forwards}
 @keyframes lightsOn{0%{opacity:.9}18%{opacity:.55}24%{opacity:.85}36%{opacity:.25}42%{opacity:.6}100%{opacity:0}}
@@ -183,8 +183,8 @@ footer{border-top:1px solid var(--line);padding:30px 24px;display:flex;flex-wrap
 @keyframes fire{to{transform:scale(1.06,1.12) skewX(-3deg)}}
 #ovenMouth{animation:glow 2.4s infinite alternate}
 @keyframes glow{to{opacity:.82}}
-.k-intro{position:absolute;left:0;right:0;bottom:4vh;text-align:center;color:#F6F1E9;padding:0 20px;opacity:0;animation:fadeUp .9s 1.9s forwards}
-.k-intro p{font-family:var(--serif);font-style:italic;font-size:clamp(20px,3vw,30px);margin-bottom:16px}
+.k-intro{margin-top:1.4vh;text-align:center;color:#F6F1E9;padding:0 20px;opacity:0;animation:fadeUp .9s 1.9s forwards;font-family:var(--sans);text-transform:none;line-height:1.4;pointer-events:auto}
+.k-intro p{font-family:var(--serif);font-style:italic;font-size:clamp(17px,2.4vw,24px);margin-bottom:12px}
 .k-ctas{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
 @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 .btn.light{border-color:rgba(246,241,233,.7);color:#F6F1E9}
@@ -275,12 +275,6 @@ footer{border-top:1px solid var(--line);padding:30px 24px;display:flex;flex-wrap
       <polygon points="1600,0 1600,240 900,900 600,900" fill="url(#beam)" opacity=".35"/>
     </svg>
 
-    <!-- Riesige Überschrift hinter dem Koch -->
-    <div class="k-headline" id="kHead" aria-hidden="true">
-      <div class="la"><span>L</span><span>A</span></div>
-      <div class="mo"><span>M</span><span>O</span><span>N</span><span>T</span><span>A</span><span>N</span><span>A</span><span>R</span><span>A</span></div>
-    </div>
-
     <!-- Vordergrund: Koch, Theke, Teig -->
     <svg class="k-layer" id="fgsvg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
       <defs>
@@ -360,13 +354,21 @@ footer{border-top:1px solid var(--line);padding:30px 24px;display:flex;flex-wrap
       <g id="flourP" fill="#fff"></g>
     </svg>
 
-    <div class="k-dim" id="kDim"></div>
-
-    <!-- Texte -->
-    <div class="k-intro" id="kIntro">
+    <!-- Name groß vorne auf der Theke -->
+    <div class="k-headline" id="kHead">
+      <div class="la"><span>L</span><span>A</span></div>
+      <div class="mo"><span>M</span><span>O</span><span>N</span><span>T</span><span>A</span><span>N</span><span>A</span><span>R</span><span>A</span></div>
+      <div class="k-intro" id="kIntro">
       <p>Mit Leidenschaft zur italienischen Küche.</p>
       <div class="k-ctas"><a class="btn fill" href="tel:+49307741729">Tisch reservieren</a><a class="btn light" href="#speisekarte">Speisekarte</a></div>
     </div>
+    </div>
+
+    
+    <div class="k-dim" id="kDim"></div>
+
+    <!-- Texte -->
+    
     <div class="k-caps" id="kCaps">
       <div class="k-cap"><span>01 · Il Impasto</span><h3>Der Teig.</h3><p>Die Basis jeder guten Pizza – geknetet, bis er geschmeidig ist.</p></div>
       <div class="k-cap"><span>02 · La Forma</span><h3>In Form.</h3><p>Mit den Fingern sanft ausgezogen – Stück für Stück.</p></div>
@@ -528,7 +530,7 @@ let seed=7;const rnd=()=>(seed=(seed*16807)%2147483647)/2147483647;
 
 
 /* ---------- Küche: Pizzaiolo ---------- */
-document.querySelectorAll('.k-headline span').forEach((s,i)=>s.style.animationDelay=(1.0+i*.07)+'s');
+document.querySelectorAll('.k-headline .la span,.k-headline .mo span').forEach((s,i)=>s.style.animationDelay=(1.0+i*.07)+'s');
 const kp={p:0};
 function fitHead(){const mo=$('#kHead .mo');mo.style.fontSize='';const w=mo.scrollWidth,max=innerWidth*.94;if(w>max)mo.style.fontSize=(parseFloat(getComputedStyle(mo).fontSize)*max/w)+'px'}
 fitHead();addEventListener('resize',fitHead);if(document.fonts)document.fonts.ready.then(fitHead);
@@ -570,9 +572,9 @@ function kitchen(p,now){
   T($('#headG'),`translate(0 ${breathe*.6}) rotate(${Math.sin(t*.7)*1.2} 800 300)`);
   $('#eyes').setAttribute('transform',(t%4)<.12?'translate(0 254) scale(1 .1) translate(0 -254)':'');
   // Überschrift
-  const hf=seg(p,.03,.14);
-  $('#kHead').style.transform=`translateY(${-hf*14}vh) scale(${1-hf*.08})`;$('#kHead').style.opacity=1-hf;
-  $('#kIntro').style.visibility=p>.06?'hidden':'visible';$('#kIntro').style.opacity=p>.0?1-seg(p,0,.05):'';
+  const hf=seg(p,.015,.07);
+  $('#kHead').style.transform=`translateY(${hf*6}vh)`;$('#kHead').style.opacity=1-hf;$('#kHead').style.visibility=hf>=1?'hidden':'visible';
+  
   $('#kCue').style.visibility=p>.04?'hidden':'visible';
   const ci=p<.08?-1:p<.25?0:p<.38?1:p<.62?2:p<.8?3:-1;
   kCaps.forEach((c,i)=>c.classList.toggle('on',i===ci));
