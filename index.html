@@ -190,12 +190,12 @@ footer{border-top:1px solid var(--line);padding:30px 24px;display:flex;flex-wrap
 .btn.light{border-color:rgba(246,241,233,.7);color:#F6F1E9}
 .btn.light:hover{background:#F6F1E9;color:#1E1A16}
 .k-caps{position:absolute;left:0;right:0;bottom:3.5vh;padding:0 22px;color:#F6F1E9;pointer-events:none}
-@media(min-width:900px){.k-caps{left:5vw;right:auto;width:520px;bottom:auto;top:30vh;color:#1E1A16}}
+@media(min-width:900px){.k-caps{bottom:4vh;text-align:center}}
 .k-cap{position:absolute;left:22px;right:22px;bottom:0;opacity:0;transform:translateY(30px);transition:opacity .45s,transform .6s cubic-bezier(.2,.8,.2,1)}
-@media(min-width:900px){.k-cap{left:0;right:0;bottom:auto;top:0}}
+@media(min-width:900px){.k-cap{left:0;right:0}.k-caps .k-cap h3{font-size:clamp(44px,min(6vw,8.5vh),96px)}.k-caps .k-cap p{margin:0 auto;max-width:720px;font-size:17px}}
 .k-cap.on{opacity:1;transform:none}
 .k-cap span{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#E8B04B;font-weight:600}
-@media(min-width:900px){.k-cap span{color:var(--accent)}}
+
 .k-cap h3{font-family:"Anton","Oswald",Impact,sans-serif;text-transform:uppercase;font-weight:400;font-size:clamp(48px,7vw,104px);line-height:.95;margin:6px 0 8px;letter-spacing:.005em}
 .k-cap p{font-size:16px;max-width:360px;opacity:.85}
 .k-card{position:absolute;right:5vw;top:24vh;width:min(86vw,330px);background:rgba(255,253,249,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
@@ -576,7 +576,7 @@ function kitchen(p,now){
   $('#kHead').style.transform=`translateY(${hf*6}vh)`;$('#kHead').style.opacity=1-hf;$('#kHead').style.visibility=hf>=1?'hidden':'visible';
   
   $('#kCue').style.visibility=p>.04?'hidden':'visible';
-  const ci=p<.08?-1:p<.25?0:p<.38?1:p<.62?2:p<.8?3:-1;
+  const ci=p<.08?-1:p<.25?0:p<.38?1:p<.62?2:p<.8?3:(innerWidth>=900?3:-1);
   kCaps.forEach((c,i)=>c.classList.toggle('on',i===ci));
   $('#kCard').classList.toggle('on',p>.8);
   let carry=null,spoonOn=0,L,R,dx=800,dy=606,rx=55,ry=32,rot=0,rim=0,air=false,flour=0;
